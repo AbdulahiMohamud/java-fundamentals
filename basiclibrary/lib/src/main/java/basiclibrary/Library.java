@@ -3,6 +3,9 @@
  */
 package basiclibrary;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 
 public class Library {
@@ -62,6 +65,56 @@ public class Library {
             }
         }
        return arr[num];
+   }
+
+   public static String temp (int [][] arr) {
+       String results = "";
+       int highTemp = arr[0][0];
+       int lowTemp = arr[0][0];
+       HashSet<Integer> tempdata = new HashSet<>();
+       for (int i = 0; i < arr.length; i++) {
+           for (int j = 0; j < arr[i].length; j++) {
+               if (arr[i][j] > highTemp)
+                   highTemp = arr[i][j];
+               if (arr[i][j] < lowTemp)
+                   lowTemp = arr[i][j];
+               tempdata.add(arr[i][j]);
+           }
+       }
+       System.out.println("High: " + highTemp);
+       System.out.println("Low: " + lowTemp);
+       for (int i = lowTemp; i <= highTemp; i++) {
+           if (tempdata.contains(i))
+               results += i + " ";
+           else
+               System.out.println("Never saw temperature: " + i);
+       }
+       return results;
+   }
+
+   public static String tally (List<String> arr) {
+
+        HashMap<String, Integer> votes = new HashMap<>();
+        int numVotes = 0;
+        String elected = "";
+
+        for (String vote : arr) {
+            if (votes.containsKey(vote)) {
+                votes.put(vote, votes.get(vote) + 1);
+
+            } else {
+                votes.put(vote, 0);
+            }
+            for (String candidate : arr) {
+                if(votes.get(vote) > numVotes) {
+                    numVotes = votes.get(vote);
+                    elected = vote;
+                }
+            }
+
+        }
+       return elected;
+
    }
 
 
