@@ -3,18 +3,21 @@
  */
 package inheritance;
 
+import inheritance.Review.Restaurantreview;
+import inheritance.Business.Restaurant;
+import inheritance.Review.TheaterReview;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class inheritanceTest {
     Restaurant newRestaurant = new Restaurant("Jubba", "$");
-    Review newReview = new Review("Abdulahi", "Was dirty and nasty", 1);
-    Review newReview2 = new Review("Bill", "best food in the city", 5);
+    Restaurantreview newReview = new Restaurantreview("Abdulahi", "Was dirty and nasty", 1);
+    Restaurantreview newReview2 = new Restaurantreview("Bill", "best food in the city", 5);
 
     @Test
     void restaurantConsNamePrice_test() {
-        assertTrue(newRestaurant.getName() == "Jubba");
-        assertTrue(newRestaurant.getPrice() == "$");
+        assertTrue(newRestaurant.name == "Jubba");
+        assertTrue(newRestaurant.price == "$");
     }
 
     @Test
@@ -24,9 +27,9 @@ public class inheritanceTest {
 
     @Test
     void reviewConstInput_test() {
-        assertTrue(newReview.getAuthor() == "Abdulahi");
-        assertTrue(newReview.getNotes() == "Was dirty and nasty");
-        assertTrue(newReview.getNumStar() == 1);
+        assertTrue(newReview.author == "Abdulahi");
+        assertTrue(newReview.notes == "Was dirty and nasty");
+        assertTrue(newReview.numStar == 1);
     }
 
     @Test
@@ -37,7 +40,7 @@ public class inheritanceTest {
     @Test
     void ResArrayUpdate_test() {
         newRestaurant.addReview(newReview);
-        Review checkReview = newRestaurant.getReviewList().get(0);
+        Restaurantreview checkReview = (Restaurantreview) newRestaurant.reviewList.get(0);
         assertEquals("Abdulahi Was dirty and nasty 1", checkReview.toString());
     }
 
@@ -45,6 +48,14 @@ public class inheritanceTest {
     void numstars_test() {
         newRestaurant.addReview(newReview);
         newRestaurant.addReview(newReview2);
-        assertEquals(3, newRestaurant.getNumStar());
+        assertEquals(3, newRestaurant.numStar);
     }
+
+    @Test
+    void no_movieName_test() {
+        TheaterReview sut = new TheaterReview("AMC", "coool theater",3);
+        System.out.println(sut.movieName);
+        assertTrue(true, "Yo something is wrong with test_getMovies()");
+    }
+
 }
